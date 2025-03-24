@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Notes Item with Icon and Content Description -->
+    <item
+        android:id="@+id/note"
+        android:title="Notes"
+        android:icon="@drawable/note"
+        app:showAsAction="ifRoom"
+        android:contentDescription="View Notes" />
+
+    <item
+        android:id="@+id/todo"
+        android:title="Todo"
+        android:icon="@drawable/todo"
+        app:showAsAction="ifRoom"
+        android:contentDescription="View Todo List" />
+</menu>

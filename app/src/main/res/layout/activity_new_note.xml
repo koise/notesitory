@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/newnote"
+    android:background="@android:color/white">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:titleTextColor="@android:color/black"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:weightSum="3">
+
+            <!-- Left arrow -->
+            <ImageView
+                android:id="@+id/arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="22sp"
+                android:paddingStart="6dp"
+                android:backgroundTint="@color/gray"
+                android:src="@drawable/back_icon"
+                tools:ignore="ContentDescription" />
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".4"
+                android:text="Notes"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif"
+                android:textColor="@android:color/black"
+                android:textSize="19sp"
+                android:gravity="center" />
+
+            <!-- Right-side icons (faded) -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1.8"
+                android:gravity="end">
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_weight=".6"
+                android:alpha="0.6"
+                android:src="@drawable/undo_icon" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:alpha="0.6"
+                android:src="@drawable/redo_icon" />
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- Title Input -->
+
+    <!-- Notes Input -->
+
+    <!-- Bottom Toolbar (Icons) -->
+
+    <EditText
+        android:id="@+id/titleEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@null"
+        android:fontFamily="sans-serif-medium"
+        android:hint="Title"
+        android:padding="6dp"
+        android:paddingStart="25dp"
+        android:textColorHint="@android:color/darker_gray"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <EditText
+        android:id="@+id/notesEditText"
+        android:layout_width="412dp"
+        android:layout_height="514dp"
+        android:background="@null"
+        android:gravity="top"
+        android:hint="Note something down"
+        android:inputType="textMultiLine"
+        android:paddingStart="25dp"
+        android:paddingTop="15dp"
+        android:textColorHint="@android:color/darker_gray"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+        app:layout_constraintTop_toBottomOf="@id/titleEditText"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center"
+        android:background="@android:color/white"
+        android:weightSum="5"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:src="@drawable/pen_icon" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:src="@drawable/image_icon" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:src="@drawable/text_icon" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:src="@drawable/check_icon" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:alpha="0.6"
+            android:src="@drawable/clock_icon" /> <!-- Makes it faded like in the image -->
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
