@@ -2,66 +2,116 @@ package com.example.notesitory
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.TextWatcher
-import android.text.method.LinkMovementMethod
-import android.text.style.UnderlineSpan
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
 
 class SignupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_signup)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        val firstNameEditText = findViewById<EditText>(R.id.edtFirstName)
+        val lastNameEditText = findViewById<EditText>(R.id.edtLastName)
+        val phoneEditText = findViewById<EditText>(R.id.edtPhoneNumber)
+        val emailEditText = findViewById<EditText>(R.id.edtEmail)
+        val usernameEditText = findViewById<EditText>(R.id.edtUsername)
+        val passwordEditText = findViewById<EditText>(R.id.edtPassword)
+        val confirmPasswordEditText = findViewById<EditText>(R.id.edtConfirmPassword)
+        val signUpButton = findViewById<Button>(R.id.btnSignUp)
+        val loginTextView = findViewById<TextView>(R.id.txtLogin)
+
+        loginTextView.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
         }
 
+        signUpButton.setOnClickListener {
+            val firstName = firstNameEditText.text.toString().trim()
+            val lastName = lastNameEditText.text.toString().trim()
+            val phone = phoneEditText.text.toString().trim()
+            val email = emailEditText.text.toString().trim()
+            val username = usernameEditText.text.toString().trim()
+            val password = passwordEditText.text.toString().trim()
+            val confirmPassword = confirmPasswordEditText.text.toString().trim()
 
-        val textView = findViewById<TextView>(R.id.txtLogin)
-        val text = "Don't have an account? Login in here"
-        val spannable = SpannableString(text)
-        spannable.setSpan(UnderlineSpan(), text.indexOf("Login in here"), text.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        textView.text = spannable
-        textView.movementMethod = LinkMovementMethod.getInstance()
-        val txtLogin = findViewById<TextView>(R.id.txtLogin)
-        txtLogin.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            if (firstName.isEmpty() || lastName.isEmpty() || phone.isEmpty() || email.isEmpty() ||
+                username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (password.length < 6) {
+                Toast.makeText(this, "Password must be at least 6 characters", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (password != confirmPassword) {
+                Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            Thread {
+                sendSignUpRequest(firstName, lastName, phone, email, username, password)
+            }.start()
         }
+    }
 
+    private fun sendSignUpRequest(
+        firstName: String, lastName: String, phone: String,
+        email: String, username: String, password: String
+    ) {
+        try {
+            val url = URL("http://koise.fwh.is/addUser.php?firstName=$firstName&lastName=$lastName&phone=$phone&email=$email&username=$username&password=$password")
+            val connection = url.openConnection() as HttpURLConnection
+            connection.requestMethod = "GET"
+            connection.setRequestProperty("User-Agent", "Mozilla/5.0")
+            connection.connectTimeout = 10000
+            connection.readTimeout = 10000
 
-        val edtPhoneNumber = findViewById<EditText>(R.id.edtPhoneNumber)
-        edtPhoneNumber.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(charSequence: CharSequence, start: Int, before: Int, count: Int) {
-                if (charSequence.isNotEmpty() && !charSequence.toString().startsWith("+63")) {
-                    edtPhoneNumber.setText("+63")
-                    edtPhoneNumber.setSelection(3)
+            val responseCode = connection.responseCode
+            if (responseCode == 200) {
+                val inputStream = connection.inputStream
+                val reader = BufferedReader(InputStreamReader(inputStream))
+                val response = StringBuilder()
+                var line: String?
+                while (reader.readLine().also { line = it } != null) {
+                    response.append(line)
+                }
+                reader.close()
+                inputStream.close()
+
+                runOnUiThread {
+                    showDialog("Signup Status", response.toString())
+                }
+            } else {
+                runOnUiThread {
+                    showDialog("Signup Status", "Failed to send request. Response code: $responseCode")
                 }
             }
-            override fun afterTextChanged(editable: Editable) {}
-        })
-
-
-        val btnSignUp = findViewById<Button>(R.id.btnSignUp)
-        btnSignUp.setOnClickListener{
-            Toast.makeText(applicationContext, "Created an accounted Completed", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+        } catch (e: Exception) {
+            runOnUiThread {
+                Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                showDialog("Signup Status", "Error: ${e.message}")
+            }
         }
+    }
 
-
+    private fun showDialog(title: String, message: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(message)
+        builder.setTitle(title)
+        builder.setCancelable(false)
+        builder.setPositiveButton("Close") { dialog, _ ->
+            dialog.cancel()
+        }
+        val alertDialog = builder.create()
+        alertDialog.show()
     }
 }
