@@ -2,79 +2,70 @@ package com.example.notesitory
 
 import android.app.AlertDialog
 import android.content.Intent
-import android.content.res.ColorStateList
-import android.graphics.Color
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.view.animation.AnimationUtils
+import android.view.Gravity
+import android.view.MenuItem
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.NestedScrollView
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
 
 class DashboardActivity : AppCompatActivity() {
-
-    private val handler = Handler(Looper.getMainLooper()) // Handler for delay
-    private var isScrolling = false // To track scroll state
-
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var navigationView: NavigationView
+    private lateinit var btnAddNote: FloatingActionButton
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
-        //val nestedScrollView: NestedScrollView? = findViewById(R.id.nestedScrollView)
-        bottomNavigationView.itemRippleColor = ColorStateList.valueOf(Color.TRANSPARENT)
-        val slideUp = AnimationUtils.loadAnimation(this, R.anim.bottom_nav_slide_up)
-        bottomNavigationView.startAnimation(slideUp)
+        // Initialize views
+        drawerLayout = findViewById(R.id.drawerLayout)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        bottomNavigationView = findViewById(R.id.bottomNavigationView)
+        navigationView = findViewById(R.id.navigationView)
+        btnAddNote = findViewById(R.id.btnAddNote)
+        sharedPreferences = getSharedPreferences("USERPREF", MODE_PRIVATE)
 
+        setSupportActionBar(toolbar)
+
+        // Set up ActionBarDrawerToggle to handle menu icon clicks
+        val toggle = ActionBarDrawerToggle(
+            this, drawerLayout, toolbar,
+            R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        )
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        // Move navigation drawer to open from the RIGHT
+        toolbar.setNavigationOnClickListener {
+            if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
+                drawerLayout.closeDrawer(GravityCompat.END)
+            } else {
+                drawerLayout.openDrawer(GravityCompat.END)
+            }
+        }
+
+        // Set default fragment
         val notesFragment = NoteFragment()
         val todoFragment = TodoFragment()
-
         setCurrentFragment(notesFragment)
 
-
-        val btnAddNote = findViewById<FloatingActionButton>(R.id.btnAddNote)
-
-        // Show Dialog on FAB Click
+        // Floating button click
         btnAddNote.setOnClickListener {
             showChoiceDialog()
         }
 
-        /*
-        nestedScrollView?.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
-            isScrolling = true
-            handler.removeCallbacksAndMessages(null)
-
-            if (scrollY > oldScrollY) {
-                bottomNavigationView.animate()
-                    .translationY(bottomNavigationView.height.toFloat())
-                    .setDuration(300)
-                    .start()
-            } else if (scrollY < oldScrollY) { // Scrolling Up
-                bottomNavigationView.animate()
-                    .translationY(0f)
-                    .setDuration(300)
-                    .start()
-            }
-
-            // Auto pop-up after 500ms if user stops scrolling
-            handler.postDelayed({
-                if (!isScrolling) {
-                    bottomNavigationView.animate()
-                        .translationY(0f)
-                        .setDuration(300)
-                        .start()
-                }
-            }, 500)
-
-            isScrolling = false // Reset scrolling state
-        }
-        */
-
-        // Handle Bottom Navigation Clicks
+        // Bottom Navigation Clicks
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.note -> setCurrentFragment(notesFragment)
@@ -82,49 +73,76 @@ class DashboardActivity : AppCompatActivity() {
             }
             true
         }
+
+        // Drawer Navigation Clicks
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            handleDrawerItemClick(menuItem)
+            true
+        }
+    }
+
+    private fun setCurrentFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.flFragment, fragment)
+            .commit()
+    }
+
+    private fun showChoiceDialog() {
+        val options = arrayOf("To-Do", "Note")
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Choose an Option")
+        builder.setItems(options) { _, which ->
+            when (which) {
+                0 -> startActivity(Intent(this, NewNote::class.java))
+                1 -> startActivity(Intent(this, NewNote::class.java))
+            }
+        }
+        builder.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
+        builder.show()
+    }
+
+    private fun handleDrawerItemClick(menuItem: MenuItem) {
+        when (menuItem.itemId) {
+            R.id.nav_profile -> {
+                // Handle Profile
+            }
+            R.id.nav_logout -> {
+                showLogoutDialog()
+            }
+        }
+        drawerLayout.closeDrawer(GravityCompat.END)
+    }
+
+    private fun showLogoutDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Logout")
+        builder.setMessage("Are you sure you want to logout?")
+        builder.setPositiveButton("Yes") { _, _ ->
+            logout()
+        }
+        builder.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
+        builder.show()
+    }
+
+    private fun logout() {
+        // Clear SharedPreferences
+        sharedPreferences.edit().clear().apply()
+
+        // Navigate to LoginActivity and finish current activity
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
     }
 
     override fun onBackPressed() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Exit App")
         builder.setMessage("Are you sure you want to exit?")
-
         builder.setPositiveButton("Yes") { _, _ ->
-            finishAffinity() // Close all activities and exit the app
+            finishAffinity() // Close all activities
         }
-
-        builder.setNegativeButton("No") { dialog, _ ->
-            dialog.dismiss() // Dismiss the dialog and stay in the app
-        }
-
+        builder.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
         builder.show()
     }
-
-
-    private fun setCurrentFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .setCustomAnimations(
-                R.anim.slide_in_right,
-                R.anim.slide_out_left,
-                R.anim.slide_in_left,
-                R.anim.slide_out_right
-            )
-            .replace(R.id.flFragment, fragment)
-            .commit()
-    }
-
-    private fun showChoiceDialog() {
-    val options = arrayOf("To-Do", "Note")
-
-    val builder = AlertDialog.Builder(this)
-    builder.setTitle("Choose an Option")
-    builder.setItems(options) { _, which ->
-        when (which) {
-            0 -> startActivity(Intent(this, NewNote::class.java))
-            1 -> startActivity(Intent(this, NewNote::class.java))
-        }
-    }
-    builder.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
-    builder.show()
-}
 }
