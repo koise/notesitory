@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginTop="30dp"
     android:padding="12dp"
     tools:context=".TodoFragment">
 
@@ -15,7 +14,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:paddingHorizontal="8dp"
         android:layout_marginBottom="8dp">
 
         <TextView
@@ -25,6 +23,7 @@
             android:text="All"
             android:drawableEnd="@drawable/ic_dropdown"
             android:textColor="@color/text_primary"
+            android:layout_marginStart="10dp"
             android:textSize="40sp"
             android:textStyle="bold"/>
     </LinearLayout>
@@ -32,7 +31,7 @@
     <!-- Search Bar Container -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="43dp"
         android:orientation="horizontal"
         android:background="@drawable/search_background"
         android:gravity="center_vertical"
@@ -43,8 +42,8 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_search"
-            android:tint="@color/text_secondary"
-            android:layout_marginEnd="8dp"/>
+            android:layout_marginEnd="8dp"
+            app:tint="@color/gray" />
 
         <EditText
             android:id="@+id/searchBar"
