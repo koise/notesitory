@@ -18,45 +18,39 @@
             android:id="@+id/todoFrame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
+            android:background="#F8F8F8"
             android:padding="16dp">
 
             <LinearLayout
                 android:id="@+id/todoContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
+                <!-- Round CheckBox -->
+                <CheckBox
+                    android:id="@+id/checkboxDone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/bottom_nav_icon"
+                    android:layout_marginStart="1dp"
+                    android:drawableStart="@drawable/round_checkbox"/>
+
+                <!-- Task title -->
                 <TextView
                     android:id="@+id/txtTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Task Title"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtDescription"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Task details or description"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/txtDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="March 14, 2025"
-                    android:textColor="#523E3E"
-                    android:textSize="12sp"
-                    android:textStyle="italic" />
+                    android:text="Wash Clothes"
+                    android:textColor="@color/bottom_nav_text"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"/>
             </LinearLayout>
         </RelativeLayout>
 
+        <!-- Delete button on the right -->
         <ImageButton
             android:id="@+id/btnDelete"
             android:layout_width="56dp"
@@ -70,7 +64,6 @@
             android:scaleType="centerInside"
             android:visibility="gone"
             android:src="@drawable/trash"
-            android:contentDescription="Delete" />
+            android:contentDescription="Delete"/>
     </RelativeLayout>
-
 </androidx.cardview.widget.CardView>

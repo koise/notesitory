@@ -93,7 +93,10 @@ class DashboardActivity : AppCompatActivity() {
         builder.setTitle("Choose an Option")
         builder.setItems(options) { _, which ->
             when (which) {
-                0 -> startActivity(Intent(this, NewNote::class.java))
+                0 -> {
+                    val addTodoDialog = AddTodoDialogFragment()
+                    addTodoDialog.show(supportFragmentManager, "AddTodoDialog")
+                }
                 1 -> startActivity(Intent(this, NewNote::class.java))
             }
         }
@@ -105,6 +108,11 @@ class DashboardActivity : AppCompatActivity() {
         when (menuItem.itemId) {
             R.id.nav_profile -> {
                 // Handle Profile
+            }
+            R.id.nav_recentlydeleted -> {
+                val intent = Intent(this, RecentlyDeleted::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
             }
             R.id.nav_logout -> {
                 showLogoutDialog()

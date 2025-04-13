@@ -25,7 +25,14 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="32dp">
+            android:padding="32dp"
+            tools:ignore="WebViewLayout">
+
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:visibility="gone" />
 
             <!-- First Name Input -->
             <com.google.android.material.textfield.TextInputLayout

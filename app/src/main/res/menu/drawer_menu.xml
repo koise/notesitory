@@ -8,6 +8,10 @@
         android:title="Profile"
         android:icon="@drawable/ic_user"/>
     <item
+        android:id="@+id/nav_recentlydeleted"
+        android:title="Recently Deleted"
+        android:icon="@drawable/ic_recently"/>
+    <item
         android:id="@+id/nav_logout"
         android:title="Logout"
         android:icon="@drawable/logout_2_svgrepo_com"/>

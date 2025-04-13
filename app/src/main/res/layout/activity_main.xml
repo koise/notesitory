@@ -28,6 +28,13 @@
             android:orientation="vertical"
             android:padding="32dp">
 
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:visibility="gone" />
+
+
             <!-- Logo -->
             <ImageView
                 android:id="@+id/imgLogo"
@@ -53,7 +60,7 @@
                     android:id="@+id/edtName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter Name"
+                    android:hint="Enter Username"
                     android:inputType="text"
                     android:padding="12dp" />
             </com.google.android.material.textfield.TextInputLayout>
