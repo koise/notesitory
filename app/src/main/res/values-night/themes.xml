@@ -1,7 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Notesitory" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#8EB8E5</item>
+        <item name="colorPrimaryVariant">#5C88B1</item>
+        <item name="colorOnPrimary">#1B263B</item>
+        <item name="colorPrimaryContainer">#5C88B1</item>
+        <item name="colorOnPrimaryContainer">#E0E1DD</item>
+        
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">#A3B8CC</item>
+        <item name="colorSecondaryVariant">#8EB8E5</item>
+        <item name="colorOnSecondary">#1B263B</item>
+        <item name="colorSecondaryContainer">#485E74</item>
+        <item name="colorOnSecondaryContainer">#E0E1DD</item>
+        
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">#1B263B</item>
+        <item name="android:windowLightStatusBar">false</item>
+        
+        <!-- Background colors -->
+        <item name="android:colorBackground">#0D1B2A</item>
+        <item name="colorSurface">#1B263B</item>
+        <item name="colorOnSurface">#E0E1DD</item>
+        <item name="colorSurfaceVariant">#253C57</item>
+        <item name="colorOnSurfaceVariant">#A3B8CC</item>
+        
+        <!-- Text appearance -->
+        <item name="android:textColorPrimary">#E0E1DD</item>
+        <item name="android:textColorSecondary">#A3B8CC</item>
+        <item name="android:textColorHint">#778DA9</item>
+        
+        <!-- Component styles inherit from main theme - no need to redefine -->
     </style>
 </resources>

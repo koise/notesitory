@@ -1,14 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="CalculatorButton" parent="Widget.AppCompat.Button">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">10dp</item>
-        <item name="android:textSize">22sp</item>
-        <item name="android:textColor">#FFFFFF</item>
-        <item name="android:background">?android:attr/selectableItemBackground</item>
+    <!-- Text Styles -->
+    <style name="TextAppearance.Notesitory.Headline" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:lineHeight">36dp</item>
     </style>
-    <style name="noRipple" parent="Theme.MaterialComponents">
-        <item name="rippleColor">@android:color/transparent</item>
+
+    <style name="TextAppearance.Notesitory.HeadlineSmall" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:lineHeight">32dp</item>
+    </style>
+
+    <style name="TextAppearance.Notesitory.Title" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineHeight">28dp</item>
+    </style>
+
+    <style name="TextAppearance.Notesitory.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:lineHeight">24dp</item>
+    </style>
+
+    <style name="TextAppearance.Notesitory.Subtitle" parent="TextAppearance.Material3.TitleSmall">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:lineHeight">20dp</item>
+    </style>
+
+    <style name="TextAppearance.Notesitory.Body" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:lineHeight">24dp</item>
+    </style>
+    
+    <style name="TextAppearance.Notesitory.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:lineHeight">20dp</item>
+    </style>
+
+    <style name="TextAppearance.Notesitory.Caption" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="android:lineHeight">16dp</item>
+    </style>
+    
+    <style name="TextAppearance.Notesitory.LabelSmall" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="android:lineHeight">16dp</item>
+    </style>
+
+    <!-- Search Bar -->
+    <style name="Widget.Notesitory.SearchBar" parent="Widget.Material3.SearchBar">
+        <item name="backgroundTint">@color/search_background</item>
+        <item name="hintTextColor">@color/text_hint</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
+    <!-- Toolbar -->
+    <style name="Widget.Notesitory.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="titleTextAppearance">@style/TextAppearance.Notesitory.Title</item>
+        <item name="subtitleTextAppearance">@style/TextAppearance.Notesitory.Subtitle</item>
+        <item name="background">@color/surface</item>
+        <item name="elevation">2dp</item>
+    </style>
+
+    <!-- Card Styles -->
+    <style name="Widget.Notesitory.Card" parent="Widget.Material3.CardView.Filled">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="contentPadding">16dp</item>
+        <item name="cardBackgroundColor">@color/surface</item>
+        <item name="rippleColor">@color/ripple</item>
+    </style>
+
+    <style name="Widget.Notesitory.Card.Elevated" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="contentPadding">16dp</item>
+        <item name="cardBackgroundColor">@color/surface</item>
+        <item name="rippleColor">@color/ripple</item>
+    </style>
+    
+    <style name="Widget.Notesitory.Card.Outlined" parent="Widget.Material3.CardView.Outlined">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="contentPadding">16dp</item>
+        <item name="strokeColor">@color/card_border</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="rippleColor">@color/ripple</item>
+    </style>
+
+    <!-- List Items -->
+    <style name="Widget.Notesitory.ListItem" parent="Widget.Material3.CardView.Filled">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="contentPadding">16dp</item>
+        <item name="cardBackgroundColor">@color/surface</item>
+        <item name="rippleColor">@color/ripple</item>
+    </style>
+    
+    <!-- Chip Styles -->
+    <style name="Widget.Notesitory.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">@color/search_background</item>
+        <item name="chipIconTint">@color/primary</item>
+        <item name="closeIconTint">@color/primary</item>
+        <item name="rippleColor">@color/ripple</item>
+    </style>
+    
+    <!-- Divider -->
+    <style name="Widget.Notesitory.Divider" parent="Widget.Material3.MaterialDivider">
+        <item name="android:background">@color/card_border</item>
+        <item name="android:alpha">0.8</item>
+    </style>
+
+    <!-- Button Styles -->
+    <style name="Widget.Notesitory.Button" parent="Widget.Material3.Button">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+    <style name="Widget.Notesitory.Button.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
+
+    <style name="Widget.Notesitory.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="strokeColor">@color/primary</item>
+    </style>
+
+    <!-- Input Styles -->
+    <style name="Widget.Notesitory.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusTopStart">8dp</item>
+        <item name="boxStrokeColor">@color/primary</item>
+        <item name="hintTextColor">@color/primary</item>
+    </style>
+
+    <!-- FAB Styles -->
+    <style name="Widget.Notesitory.FloatingActionButton" parent="Widget.Material3.FloatingActionButton.Primary">
+        <item name="backgroundTint">@color/primary</item>
+        <item name="tint">@color/white</item>
+        <item name="borderWidth">0dp</item>
+        <item name="elevation">6dp</item>
+    </style>
+    
+    <!-- Filter Button Style -->
+    <style name="Widget.Notesitory.Button.OutlinedButton.Filter" parent="Widget.Notesitory.Button.Outlined">
+        <item name="android:minWidth">80dp</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="cornerRadius">20dp</item>
+        <item name="strokeColor">@color/card_border</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="rippleColor">@color/ripple</item>
     </style>
 </resources>

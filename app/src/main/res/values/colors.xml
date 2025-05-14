@@ -1,24 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+        <!-- Base colors -->
         <color name="black">#FF000000</color>
         <color name="white">#FFFFFFFF</color>
         <color name="gray">#414a4c</color>
-        <color name="background">#F8F8F8</color>
-        <color name="text_primary">#000000</color>
-        <color name="text_secondary">#888888</color>
+        
+        <!-- Modern color palette - Updated -->
+        <color name="dark_blue">#1A365D</color>
+        <color name="navy">#2A4365</color>
+        <color name="blue">#3182CE</color>
+        <color name="light_blue">#63B3ED</color>
+        <color name="mint">#E6FFFA</color>
+        
+        <!-- Theme colors - Enhanced -->
+        <color name="primary">#3182CE</color>
+        <color name="primary_variant">#2C5282</color>
+        <color name="secondary">#38B2AC</color>
+        <color name="secondary_variant">#E6FFFA</color>
+        
+        <!-- Surface and background colors - More subtle -->
+        <color name="background">#F7FAFC</color>
+        <color name="surface">#FFFFFF</color>
         <color name="card_background">#FFFFFF</color>
-        <color name="search_background">#EDEDED</color>
-        <color name="fab_background">#FFFFFF</color>
-        <color name="nav_active">#3A67F0</color>
-        <color name="nav_inactive">#888888</color>
-        <color name="primaryColor">#FF9800</color>
-        <color name="accentColor">#4CAF50</color>
-        <color name="buttonColor">#333333</color>
-        <color name="bottom_nav_icon">#666464</color>
-        <color name="bottom_nav_text">#000000</color>
-        <color name="iconTint">#FF5722</color>
-        <color name="colorSelected">#FFFFFF</color>
-        <color name="colorUnselected">#B0BEC5</color>
+        <color name="card_border">#EDF2F7</color>
+        
+        <!-- Text colors - Improved contrast -->
+        <color name="text_primary">#1A202C</color>
+        <color name="text_secondary">#4A5568</color>
+        <color name="text_hint">#718096</color>
+        <color name="text_disabled">#A0AEC0</color>
+        
+        <!-- UI element colors -->
+        <color name="search_background">#EDF2F7</color>
+        <color name="fab_background">#3182CE</color>
+        <color name="nav_active">#3182CE</color>
+        <color name="nav_inactive">#718096</color>
+        <color name="bottom_nav_icon">#2C5282</color>
+        <color name="bottom_nav_text">#1A202C</color>
+        <color name="iconTint">#3182CE</color>
+        <color name="ripple">#EBF8FF</color>
+        
+        <!-- Status colors - Brighter and more distinct -->
+        <color name="success">#38B2AC</color>
+        <color name="warning">#ECC94B</color>
+        <color name="error">#F56565</color>
+        <color name="info">#4299E1</color>
+        
+        <!-- Selection colors -->
+        <color name="colorSelected">#3182CE</color>
+        <color name="colorUnselected">#718096</color>
+        
+        <!-- Legacy colors (kept for compatibility) -->
         <color name="holo_red_light">#FFFF4444</color>
         <color name="holo_red_dark">#FFCC0000</color>
+        <color name="primaryColor">#3182CE</color>
+        <color name="accentColor">#EBF8FF</color>
+        <color name="buttonColor">#2C5282</color>
 </resources>

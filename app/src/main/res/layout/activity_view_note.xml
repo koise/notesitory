@@ -81,11 +81,6 @@
     </androidx.appcompat.widget.Toolbar>
 
     <!-- Title Input -->
-
-    <!-- Notes Input -->
-
-    <!-- Bottom Toolbar (Icons) -->
-
     <EditText
         android:id="@+id/viewTitle"
         android:layout_width="match_parent"
@@ -101,11 +96,76 @@
         android:textStyle="normal"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:layout_editor_absoluteX="0dp" />
+        
+    <!-- Tags Container -->
+    <LinearLayout
+        android:id="@+id/tagsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="6dp"
+        app:layout_constraintTop_toBottomOf="@+id/viewTitle">
+        
+        <!-- Tag Chips -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+            
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/tagsChipGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                app:singleLine="true" />
+        </HorizontalScrollView>
+        
+        <!-- Add Tag Input -->
+        <LinearLayout
+            android:id="@+id/addTagLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+            
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_mylocation"
+                android:contentDescription="Tag Icon" />
+                
+            <EditText
+                android:id="@+id/tagInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:background="@null"
+                android:hint="Add tag"
+                android:textSize="14sp"
+                android:inputType="text"
+                android:maxLines="1"
+                android:imeOptions="actionDone" />
+                
+            <ImageView
+                android:id="@+id/addTagButton"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:padding="6dp"
+                android:src="@android:drawable/ic_input_add"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Add Tag" />
+        </LinearLayout>
+    </LinearLayout>
 
+    <!-- Notes Input -->
     <EditText
         android:id="@+id/viewDescription"
-        android:layout_width="412dp"
-        android:layout_height="514dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@null"
         android:gravity="top"
         android:hint="Note something down"
@@ -115,10 +175,10 @@
         android:textColorHint="@android:color/darker_gray"
         android:textSize="13sp"
         app:layout_constraintBottom_toTopOf="@+id/bottomBar"
-        app:layout_constraintTop_toBottomOf="@id/viewTitle"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tagsContainer"
+        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
         android:id="@+id/bottomBar"
