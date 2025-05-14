@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray">#626E7A</color>
+    
+    <!-- Modern dark color palette -->
+    <color name="dark_blue">#0D1B2A</color>
+    <color name="navy">#1B263B</color>
+    <color name="blue">#5C88B1</color>
+    <color name="light_blue">#8EB8E5</color>
+    <color name="mint">#A3B8CC</color>
+    
+    <!-- Theme colors -->
+    <color name="primary">#8EB8E5</color>
+    <color name="primary_variant">#5C88B1</color>
+    <color name="secondary">#A3B8CC</color>
+    <color name="secondary_variant">#778DA9</color>
+    
+    <!-- Surface and background colors -->
+    <color name="background">#0D1B2A</color>
+    <color name="surface">#1B263B</color>
+    <color name="card_background">#1B263B</color>
+    <color name="card_border">#253C57</color>
+    
+    <!-- Text colors -->
+    <color name="text_primary">#E0E1DD</color>
+    <color name="text_secondary">#A3B8CC</color>
+    <color name="text_hint">#778DA9</color>
+    <color name="text_disabled">#485E74</color>
+    
+    <!-- UI element colors -->
+    <color name="search_background">#253C57</color>
+    <color name="fab_background">#8EB8E5</color>
+    <color name="nav_active">#8EB8E5</color>
+    <color name="nav_inactive">#485E74</color>
+    <color name="bottom_nav_icon">#A3B8CC</color>
+    <color name="bottom_nav_text">#E0E1DD</color>
+    <color name="iconTint">#8EB8E5</color>
+    <color name="ripple">#253C57</color>
+    
+    <!-- Status colors -->
+    <color name="success">#6ECF7F</color>
+    <color name="warning">#FFB74D</color>
+    <color name="error">#F77B7B</color>
+    <color name="info">#8EB8E5</color>
+    
+    <!-- Selection colors -->
+    <color name="colorSelected">#8EB8E5</color>
+    <color name="colorUnselected">#485E74</color>
+    
+    <!-- Legacy colors (kept for compatibility) -->
+    <color name="holo_red_light">#F77B7B</color>
+    <color name="holo_red_dark">#E57373</color>
+    <color name="primaryColor">#8EB8E5</color>
+    <color name="accentColor">#A3B8CC</color>
+    <color name="buttonColor">#5C88B1</color>
+</resources> 

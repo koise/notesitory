@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_notes"
+            android:icon="@android:drawable/ic_menu_edit"
+            android:title="Notes" />
+            
+        <item
+            android:id="@+id/nav_folders"
+            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:title="Folders" />
+            
+        <item
+            android:id="@+id/nav_favorites"
+            android:icon="@android:drawable/btn_star_big_on"
+            android:title="Favorites"
+            android:visible="false" />
+            
+        <item
+            android:id="@+id/nav_archive"
+            android:icon="@android:drawable/ic_menu_save"
+            android:title="Archive"
+            android:visible="false" />
+    </group>
+    
+    <item android:title="Data Management">
+        <menu>
+            <item
+                android:id="@+id/nav_backup"
+                android:icon="@android:drawable/ic_menu_save"
+                android:title="Backup Data" />
+                
+            <item
+                android:id="@+id/nav_restore"
+                android:icon="@android:drawable/ic_menu_upload"
+                android:title="Restore Data" />
+                
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@android:drawable/ic_menu_preferences"
+                android:title="Settings"
+                android:visible="false" />
+        </menu>
+    </item>
+    
+    <item android:title="Account">
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@android:drawable/ic_menu_close_clear_cancel"
+                android:title="Logout" />
+                
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@android:drawable/ic_menu_help"
+                android:title="Help"
+                android:visible="false" />
+        </menu>
+    </item>
+    
+</menu> 
